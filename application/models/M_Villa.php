@@ -37,7 +37,13 @@ class M_Villa extends CI_Model {
         $this->db->where('id_villa', $id);
         $this->db->update('villa', $data);
     }
-
+    function delete_data($id) {
+        $this->db->where('id_villa', $id);
+        $this->db->delete('villa');
+        if($this->db->affected_rows()>0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
