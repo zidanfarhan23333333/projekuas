@@ -7,7 +7,7 @@ require_once FCPATH . 'vendor/autoload.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Kontak extends REST_Controller {
+class Pelanggan extends REST_Controller {
 
     function __construct($config = 'rest') {
         parent::__construct($config);
