@@ -19,7 +19,6 @@ class Pelanggan extends REST_Controller {
         $this->load->database();
         $this->load->model('M_Pelanggan');
         $this->load->library('form_validation');
-        $this->load->library('jwt');
     }
 
     public function options_get() {
