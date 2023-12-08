@@ -16,16 +16,24 @@
         }
 
         function index_get() 
-        {
+            $authorizationHeader = $this->input->get_request_header('Authorization', true);
+
+            if(empty($authorizationHeader) || $this->jwt->decode($authorizationHeader) === false) {
+                return $this->response(
+                    array(
+                        'kode' => '401',
+                        'pesan' => 'signature tidak sesuai',
+                        'data' => []
+                    ), '401'
+                );
+            }
             $id = $this->get('id');
             if($id == '') {
-                $data = $this->M_User->fetch_all();
-            } else {
-                $data = $this->M_User->fetch_single($id);
+              $data = $this->M_Detail->get_all();
+            } else{
+              $data = $this->M_Detail->get_by_id($id);
             }
-            $this->response($data, 200);
-        }
-
+            $this->response($data, 200)
         function index_post() {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
