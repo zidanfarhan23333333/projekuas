@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script');
 
     require APPPATH . '/libraries/REST_Controller.php';
+    require_once FCPATH . 'vendor/autoload.php';
     use Restserver\Libraries\REST_Controller;
 
 class Pelanggan extends REST_Controller {
