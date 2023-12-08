@@ -5,8 +5,6 @@ defined('BASEPATH') OR exit('No direct script');
     require APPPATH . '/libraries/REST_Controller.php';
     use Restserver\Libraries\REST_Controller;
 
-use Restserver\Libraries\REST_Controller;
-
 class Pelanggan extends REST_Controller {
 
     function __construct($config = 'rest') {
