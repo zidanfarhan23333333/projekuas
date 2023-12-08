@@ -1,7 +1,8 @@
 <?php
+ require_once FCPATH . 'vendor/autoload.php';
 
-class Dashboard extends CI_Controller
-{
+ class Dashboard extends CI_Controller
+ {
 
     public function __construct()
     {
