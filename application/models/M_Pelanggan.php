@@ -7,7 +7,7 @@ class M_Pelanggan extends CI_Model {
         return $query->result_array();
     }
 
-    function fetch_single($id) {
+    function fetch_single_data($id) {
         $this->db->where('id_pelanggan', $id);
         $query = $this->db->get('pelanggan');
         return $query->row();
