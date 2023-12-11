@@ -7,7 +7,7 @@ class M_Detail extends CI_Model {
         return $query->result_array();
     }
 
-    function fetch_single($id) {
+    function fetch_single_data($id) {
         $this->db->where('id_detail', $id);
         $query = $this->db->get('detail');
         return $query->row();
