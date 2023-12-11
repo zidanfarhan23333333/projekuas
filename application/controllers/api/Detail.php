@@ -3,7 +3,6 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     require APPPATH . '/libraries/REST_Controller.php';
-    require_once FCPATH . 'vendor/autoload.php';
     use Restserver\Libraries\REST_Controller;
 
     class Detail extends REST_Controller {
@@ -20,6 +19,7 @@
             $this->load->database(); //optional
             $this->load->model('M_Detail');
             $this->load->library('form_validation');
+            $this->load->library('jwt');
 
             date_default_timezone_set('Asia/Jakarta');
         }  
