@@ -86,12 +86,12 @@
                 return $this->response($response);
             }
             $data = array(
-                'nama_villa' => trim($this->post('nama_vila')),
-                'fasilitas_villa' => trim($this->post('fasilitas vila')),
-                'harga_per_malam' => trim($this->post('harga per malam'))
+                'nama_villa' => trim($this->post('nama_villa')),
+                'fasilitas_villa' => trim($this->post('fasilitas_villa')),
+                'harga_per_malam' => trim($this->post('harga_per_malam'))
             );
             $this->M_Villa->insert_api($data);
-            $last_row = $this->db->select('*')->order_by('id_villa',"desc")->limit(1)->get('vila')->row();
+            $last_row = $this->db->select('*')->order_by('id_villa',"desc")->limit(1)->get('villa')->row();
             $response = array(
                 'status' => 'success',
                 'data' => $last_row,
@@ -140,14 +140,14 @@
                 return $this->response($response);
             }
             $data = array(
-                'nama_villa' => trim($this->put('nama vila')),
-                'fasilitas_villa' => trim($this->put('fasilitas vila')),
-                'harga_per_malam' => trim($this->put('harga per malam'))
+                'nama_villa' => trim($this->put('nama_villa')),
+                'fasilitas_villa' => trim($this->put('fasilitas_villa')),
+                'harga_per_malam' => trim($this->put('harga_per_malam'))
             );
-            $this->M_Vila->update_data($id,$data);
+            $this->M_Villa->update_data($id,$data);
             $newData = $this->M_Villa->fetch_single_data($id);
             $response = array(
-                'status' => 'succes',
+                'status' => 'success',
                 'data' => $newData,
                 'status_code' =>200,
             );
