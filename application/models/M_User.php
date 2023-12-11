@@ -7,7 +7,7 @@ class M_User extends CI_Model {
         return $query->result_array();
     }
 
-    function fetch_single($id) {
+    function fetch_single_data($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('user');
         return $query->row();
