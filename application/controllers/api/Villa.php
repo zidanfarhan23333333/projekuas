@@ -3,7 +3,6 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     require APPPATH . '/libraries/REST_Controller.php';
-    require_once FCPATH . 'vendor/autoload.php';
     use Restserver\Libraries\REST_Controller;
 
     class Villa extends REST_Controller {
@@ -20,6 +19,7 @@
             $this->load->database(); 
             $this->load->model('M_Villa');
             $this->load->library('form_validation');
+            $this->load->library('jwt');
         }  
 
         public function options_get() {
@@ -28,6 +28,23 @@
            header("Access-Control-Allow-Headers: Content-Type,Access-Control-Allow-Headers, Authorization, X-Requested-With");
             exit();
            }
+        
+        function is_login() {
+            $authorizationHeader = $this->input->get_request_header('Authorization', true);
+    
+            if (empty($authorizationHeader) || $this->jwt->decode($authorizationHeader) === false) {
+                $this->response(
+                    array(
+                        'kode' => '401',
+                        'pesan' => 'signature tidak sesuai',
+                        'data' => []
+                    ), '401'
+                );
+                return false;
+            }
+    
+            return true;
+        }
            
         function index_get()
         {
