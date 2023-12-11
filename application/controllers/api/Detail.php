@@ -21,7 +21,7 @@
             $this->load->library('form_validation');
             $this->load->library('jwt');
 
-            date_default_timezone_set('Asia/Jakarta');
+            // date_default_timezone_set('Asia/Jakarta');
         }  
 
         public function options_get() {
@@ -43,6 +43,24 @@
         }    
         function index_post()
         {
+            if ($this->post('id_pelanggan') == '') {
+                $response = array(
+                    'status' => 'fail',
+                    'field' => 'id_pelanggan',
+                    'massage' =>'Isian id pelanggan tidak boleh kosong!',
+                    'status_code' => 502
+                );
+                return $this->response($response);
+            }
+            if ($this->post('id_villa') == '') {
+                $response = array(
+                    'status' => 'fail',
+                    'field' => 'id_villa',
+                    'massage' =>'Isian id_villa tidak boleh kosong!',
+                    'status_code' => 502
+                );
+                return $this->response($response);
+            }
             if ($this->post('tanggal_checkin') == '') {
                 $response = array(
                     'status' => 'fail',
@@ -71,10 +89,12 @@
                 return $this->response($response);
             }
             $data = array(
-                'tanggal_checkin' => trim($this->post('Y-m-d')),
-                'tanggal_checkout' => trim($this->post('Y-m-d')),
-                'jumlah_orang' => trim($this->post('jumlah orang')),
-                'total_biaya' => trim($this->post('total biaya'))
+                'id_pelanggan' => trim($this->post('id_pelanggan')),
+                'id_villa' => trim($this->post('id_villa')),
+                'tanggal_checkin' => trim($this->post('tanggal_checkin')),
+                'tanggal_checkout' => trim($this->post('tanggal_checkout')),
+                'jumlah_orang' => trim($this->post('jumlah_orang')),
+                'total_biaya' => trim($this->post('total_biaya'))
             );
             $this->M_Detail->insert_api($data);
             $last_row = $this->db->select('*')->order_by('id_detail',"desc")->limit(1)->get('detail')->row();
@@ -97,6 +117,24 @@
                     'status_code' => 502
                 );
                 return $this->response($error);
+            }
+            if ($this->put('id_pelanggan') == ''){
+                $response = array(
+                    'status' =>'fail',
+                    'field' => 'id_pelanggan',
+                    'messege' => 'Isian id pelanggan tidak boleh kosong!',
+                    'status_code' => 502
+                );
+                return $this->response($response);
+            }
+            if ($this->put('id_villa') == ''){
+                $response = array(
+                    'status' =>'fail',
+                    'field' => 'id_villa',
+                    'messege' => 'Isian id villa tidak boleh kosong!',
+                    'status_code' => 502
+                );
+                return $this->response($response);
             }
             if ($this->put('tanggal_checkin') == ''){
                 $response = array(
@@ -135,8 +173,10 @@
                 return $this->response($response);
             }
             $data = array(
-                'tanggal_checkin' => trim($this->put('Y-m-d')),
-                'tanggal_checkout' => trim($this->put('Y-m-d')),
+                'id_pelanggan' => trim($this->put('id_pelanggan')),
+                'id_villa' => trim($this->put('id_villa')),
+                'tanggal_checkin' => trim($this->put('tanggal_checkin')),
+                'tanggal_checkout' => trim($this->put('tanggal_checkout')),
                 'jumlah_orang' => trim($this->put('jumlah_orang')),
                 'total_biaya' => trim($this->put('total_biaya'))
             );
